@@ -1,11 +1,11 @@
-## SPEC_FUNCTIONS, Gabo Coïmbra 2019-11-07
+## SPEC_FUNCTIONS, Gabo CoÃ¯mbra 2019-11-07
 
 library(pavo)
 library(tidyr)
 library(dplyr)
 
 ############## GETSPEC_FULL()
-### obtem arquivos de spec de uma pasta e retorna a curva média tratada
+### obtem arquivos de spec de uma pasta e retorna a curva mÃ©dia tratada
 ### getspec(), procspec() and aggspec() at once
 ## input: species name, structure name and file extension of spectral data
 ## output: mean reflectance for the species
@@ -92,6 +92,7 @@ qcatch_cs = function(spec, background = NULL, illum = 'D65') {
                      avg.v = vismodel_avg.v,
                      avg.uv = vismodel_avg.uv)
 
+    return(vismodels)
 }
 
 ################################################ QUANTUM CATCHES
@@ -166,6 +167,8 @@ qcatch_nl = function(spec,
                        sephanoides = vismodel_sephanoides,
                        avg.v = vismodel_avg.v,
                        avg.uv = vismodel_avg.uv)
+      
+      return(vismodels)
 
 }
 
