@@ -10,7 +10,7 @@ library(dplyr)
 ## input: species name, structure name and file extension of spectral data
 ## output: mean reflectance for the species
 
-getspec_full = function(sp, ext = 'txt', parte = "") {
+getspec_full = function(sp, ext = 'txt', parte = "", average = TRUE) {
   spec = getspec(
       where = if_else(parte == "",
                             false = paste(sp, parte, sep = "_"),
@@ -18,9 +18,13 @@ getspec_full = function(sp, ext = 'txt', parte = "") {
       ext = ext, lim = c(300, 700), decimal = ",")
   spec = procspec(spec, fixneg = 'zero', opt = 'smooth', span = 0.1)
   spec = procspec(spec, fixneg = 'zero', opt = c('min', 'max'))
-  spec = aggspec(spec)
-  names(spec) = c("wl", sp)
-  return(spec)}
+  if(average == TRUE) {
+    spec = aggspec(spec)
+    names(spec) = c("wl", sp)
+    return(spec)
+  } else {
+    return(spec)}
+}
 
 
 ################################################ QUANTUM CATCHES
